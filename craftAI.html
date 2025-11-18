@@ -1,0 +1,3201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CraftAI Studio - Free DaVinci Resolve & Blender Courses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --secondary: #06D6A0;
+            --accent: #FF6B6B;
+            --dark: #1E293B;
+            --light: #F8FAFC;
+            --gradient: linear-gradient(135deg, #6366F1 0%, #06D6A0 100%);
+            --gradient-dark: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0F172A;
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--light);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 5rem;
+            background: var(--gradient-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="%2306D6A0" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #CBD5E1;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #94A3B8;
+        }
+
+        .hero-visual {
+            flex: 1;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .platform-preview {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .platform-header {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .platform-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #FF5F57; }
+        .dot-yellow { background: #FFBD2E; }
+        .dot-green { background: #28CA42; }
+
+        .platform-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .platform-window {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 8px;
+            padding: 1rem;
+            height: 150px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .window-title {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .ai-chat {
+            grid-column: 1 / -1;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .chat-message {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .user-message {
+            background: rgba(6, 214, 160, 0.2);
+            margin-left: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: var(--dark);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            color: #94A3B8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #CBD5E1;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* AI Assistants Section */
+        .ai-assistants {
+            padding: 6rem 0;
+            background: var(--gradient-dark);
+        }
+
+        .assistant-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .tab-btn.active {
+            background: var(--gradient);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .assistant-demo {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+
+        .demo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-title {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .demo-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .demo-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .demo-chat {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+            height: 400px;
+            overflow-y: auto;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .ai-message {
+            background: rgba(99, 102, 241, 0.2);
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+        }
+
+        .user-message {
+            background: rgba(6, 214, 160, 0.2);
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+        }
+
+        .demo-preview {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .preview-placeholder {
+            width: 100%;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .preview-placeholder i {
+            font-size: 3rem;
+            color: var(--primary);
+        }
+
+        .input-group {
+            display: flex;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border-radius: 50px 0 0 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(15, 23, 42, 0.8);
+            color: white;
+            outline: none;
+        }
+
+        .input-group button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 0 50px 50px 0;
+            border: none;
+            background: var(--gradient);
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 6rem 0;
+            background: var(--dark);
+        }
+
+        .course-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .course-image {
+            height: 200px;
+            background: var(--gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .course-image i {
+            font-size: 4rem;
+            color: white;
+            z-index: 1;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-level {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .level-beginner {
+            background: rgba(6, 214, 160, 0.2);
+            color: var(--secondary);
+        }
+
+        .level-intermediate {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+        }
+
+        .level-advanced {
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--accent);
+        }
+
+        .course-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .course-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #CBD5E1;
+        }
+
+        .course-features i {
+            color: var(--secondary);
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .course-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .price-free {
+            color: var(--secondary);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 6rem 0;
+            background: var(--gradient);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.1"><polygon fill="%23ffffff" points="0,0 1000,1000 0,1000"/></svg>');
+            background-size: cover;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94A3B8;
+            font-size: 0.9rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--dark);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            color: var(--secondary);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #CBD5E1;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(15, 23, 42, 0.8);
+            color: white;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+        }
+
+        /* Learning Platform */
+        .learning-platform {
+            padding: 6rem 0;
+            background: var(--gradient-dark);
+        }
+
+        .platform-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 2rem;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-menu a {
+            color: #CBD5E1;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--light);
+        }
+
+        .main-content {
+            padding: 2rem;
+        }
+
+        .course-player {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .video-placeholder i {
+            font-size: 4rem;
+            color: var(--primary);
+        }
+
+        .lesson-list {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .lesson-item {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-item.completed {
+            color: var(--secondary);
+        }
+
+        /* Marketplace */
+        .marketplace {
+            padding: 6rem 0;
+            background: var(--dark);
+        }
+
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .asset-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .asset-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .asset-image {
+            height: 150px;
+            background: var(--gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .asset-image i {
+            font-size: 3rem;
+            color: white;
+        }
+
+        .asset-content {
+            padding: 1.5rem;
+        }
+
+        .asset-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .asset-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #94A3B8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Community */
+        .community {
+            padding: 6rem 0;
+            background: var(--gradient-dark);
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .community-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .community-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Video Editor */
+        .video-editor {
+            padding: 6rem 0;
+            background: var(--dark);
+        }
+
+        .editor-container {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .editor-header {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .editor-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .editor-tab {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .editor-tab.active {
+            background: var(--primary);
+        }
+
+        .editor-workspace {
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            height: 600px;
+        }
+
+        .editor-sidebar {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 1rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .editor-timeline {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .editor-preview {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .editor-preview video {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .editor-tools {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 1rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tool-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-group h4 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .tool-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tool-option {
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tool-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .tool-option.active {
+            background: var(--primary);
+        }
+
+        /* Certificate */
+        .certificate-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .certificate {
+            background: white;
+            color: #333;
+            width: 90%;
+            max-width: 800px;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .certificate::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .certificate-header {
+            margin-bottom: 2rem;
+        }
+
+        .certificate-header h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-body {
+            margin-bottom: 2rem;
+        }
+
+        .certificate-body h3 {
+            color: var(--dark);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-body p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-verify {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .certificate-verify p {
+            font-family: monospace;
+            color: #333;
+        }
+
+        .certificate-logos {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .certificate-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .certificate-logo img {
+            height: 50px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .demo-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .platform-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .editor-workspace {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr auto;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons, .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* User Profile */
+        .user-profile {
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        /* YouTube Integration */
+        .youtube-lessons {
+            padding: 6rem 0;
+            background: var(--gradient-dark);
+        }
+
+        .youtube-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .youtube-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .youtube-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .youtube-thumbnail {
+            height: 180px;
+            background: var(--gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .youtube-thumbnail i {
+            font-size: 3rem;
+            color: white;
+            z-index: 1;
+        }
+
+        .youtube-content {
+            padding: 1.5rem;
+        }
+
+        .youtube-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .youtube-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #94A3B8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Free LUTs Section */
+        .free-luts {
+            padding: 6rem 0;
+            background: var(--dark);
+        }
+
+        .lut-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .lut-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .lut-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .lut-preview {
+            height: 120px;
+            background: var(--gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lut-preview i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .lut-content {
+            padding: 1rem;
+        }
+
+        .lut-content h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Before/After Comparison */
+        .comparison-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .comparison-before, .comparison-after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .comparison-before {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            z-index: 1;
+        }
+
+        .comparison-after {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            width: 50%;
+            z-index: 2;
+            border-right: 2px solid white;
+        }
+
+        .comparison-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            height: 100%;
+            width: 4px;
+            background: white;
+            cursor: col-resize;
+            z-index: 3;
+            transform: translateX(-50%);
+        }
+
+        .comparison-handle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Community Chat */
+        .community-chat {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .chat-message.user {
+            background: rgba(99, 102, 241, 0.2);
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+
+        .chat-message.other {
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom-left-radius: 0;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(15, 23, 42, 0.8);
+            color: white;
+            outline: none;
+        }
+
+        /* Course Modules */
+        .course-modules {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .module {
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .module-header {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .module-content {
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.5);
+            display: none;
+        }
+
+        .module-content.active {
+            display: block;
+        }
+
+        .module-lesson {
+            padding: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .module-lesson:last-child {
+            border-bottom: none;
+        }
+
+        .module-lesson.completed {
+            color: var(--secondary);
+        }
+
+        /* File Upload */
+        .file-upload {
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .file-upload i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .uploaded-files {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .uploaded-file {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .uploaded-file i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .remove-file {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        /* External Platform Links */
+        .external-platforms {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .platform-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            text-decoration: none;
+            color: var(--light);
+            transition: all 0.3s;
+        }
+
+        .platform-link:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Video Player */
+        .video-player {
+            width: 100%;
+            height: 400px;
+            background: #000;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .video-player iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-robot logo-icon"></i>
+                    CraftAI Studio
+                </a>
+                
+                <div class="nav-links">
+                    <a href="#courses">Courses</a>
+                    <a href="#ai-assistants">AI Assistants</a>
+                    <a href="#video-editor">Video Editor</a>
+                    <a href="#marketplace">Marketplace</a>
+                    <a href="#community">Community</a>
+                    <a href="#free-luts">Free LUTs</a>
+                </div>
+                
+                <div class="auth-buttons" id="auth-buttons">
+                    <button class="btn btn-outline" id="login-btn">Log In</button>
+                    <button class="btn btn-primary" id="signup-btn">Sign Up Free</button>
+                </div>
+                
+                <div class="user-profile" id="user-profile">
+                    <div class="user-avatar" id="user-avatar">U</div>
+                    <span id="username">User</span>
+                    <button class="btn btn-outline" id="logout-btn">Logout</button>
+                </div>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Master DaVinci Resolve & Blender with AI Co-Pilots</h1>
+                    <p>The first platform that teaches you professional video editing and 3D design with AI assistants that work alongside you in real-time. All courses completely FREE!</p>
+                    
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="hero-signup">Start Learning Free</button>
+                        <button class="btn btn-outline">Watch Demo</button>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">10K+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Experts</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">5K+</div>
+                            <div class="stat-label">Assets</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="platform-preview">
+                        <div class="platform-header">
+                            <div class="platform-dot dot-red"></div>
+                            <div class="platform-dot dot-yellow"></div>
+                            <div class="platform-dot dot-green"></div>
+                        </div>
+                        <div class="platform-content">
+                            <div class="platform-window">
+                                <div class="window-title">Video Editor</div>
+                                <div class="window-content">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                            </div>
+                            <div class="platform-window">
+                                <div class="window-title">3D Workspace</div>
+                                <div class="window-content">
+                                    <i class="fas fa-cube"></i>
+                                </div>
+                            </div>
+                            <div class="platform-window ai-chat">
+                                <div class="window-title">AI Assistant</div>
+                                <div class="chat-message">How can I help you with your project today?</div>
+                                <div class="chat-message user-message">Make this video look cinematic</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Revolutionary Learning Experience</h2>
+                <p>We combine AI technology with expert knowledge to create the most effective creative education platform</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-robot feature-icon"></i>
+                    <h3>AI Co-Pilots</h3>
+                    <p>Get real-time assistance while you work. Our AI analyzes your projects and provides step-by-step guidance.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-certificate feature-icon"></i>
+                    <h3>Verified Certificates</h3>
+                    <p>Earn industry-recognized certificates with blockchain verification to showcase your skills.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3>Expert Community</h3>
+                    <p>Connect with professional video editors and 3D artists for feedback and collaboration.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-store feature-icon"></i>
+                    <h3>Asset Marketplace</h3>
+                    <p>Access thousands of templates, LUTs, 3D models and transitions created by our community.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-magic feature-icon"></i>
+                    <h3>Smart Templates</h3>
+                    <p>AI-generated templates tailored to your specific needs and project requirements.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-briefcase feature-icon"></i>
+                    <h3>Portfolio Builder</h3>
+                    <p>Automatically create professional portfolios showcasing your best work to potential clients.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Assistants Section -->
+    <section class="ai-assistants" id="ai-assistants">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI-Powered Creative Assistants</h2>
+                <p>Our specialized AI co-pilots help you master complex creative workflows</p>
+            </div>
+            
+            <div class="assistant-tabs">
+                <button class="tab-btn active" data-tab="video">Video Editing AI</button>
+                <button class="tab-btn" data-tab="blender">Blender AI</button>
+                <button class="tab-btn" data-tab="quality">Quality Checker</button>
+            </div>
+            
+            <div class="tab-content active" id="video-tab">
+                <div class="assistant-demo">
+                    <div class="demo-header">
+                        <h3 class="demo-title">Video Editing Assistant</h3>
+                        <div class="demo-actions">
+                            <button class="btn btn-outline">Upload Video</button>
+                            <button class="btn btn-primary">Ask AI</button>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-content">
+                        <div class="demo-chat">
+                            <div class="chat-container">
+                                <div class="message ai-message">
+                                    Hi! I'm your video editing assistant. I can help with color grading, transitions, pacing, and more. What would you like to work on?
+                                </div>
+                                <div class="message user-message">
+                                    Make this video look cinematic like Dune
+                                </div>
+                                <div class="message ai-message">
+                                    Great choice! To achieve a "Dune" look, I recommend:
+                                    <br><br>
+                                    1. Apply a teal and orange LUT for the desert scenes
+                                    <br>
+                                    2. Increase contrast by 15%
+                                    <br>
+                                    3. Add a subtle film grain effect
+                                    <br>
+                                    4. Use wide aspect ratio bars (2.35:1)
+                                    <br><br>
+                                    Would you like me to apply these adjustments?
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="demo-preview">
+                            <div class="preview-placeholder">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <p>Video preview will appear here</p>
+                            
+                            <div class="input-group">
+                                <input type="text" placeholder="Ask the AI assistant...">
+                                <button><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2>Free Structured Learning Paths</h2>
+                <p>Master DaVinci Resolve and Blender with our project-based courses - completely FREE!</p>
+            </div>
+            
+            <div class="course-cards">
+                <div class="course-card">
+                    <div class="course-image">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-level level-beginner">Beginner</span>
+                        <h3>DaVinci Resolve Fundamentals</h3>
+                        <p>Learn the basics of professional video editing, color correction, and audio editing.</p>
+                        
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> 8 weeks of structured learning</li>
+                            <li><i class="fas fa-check"></i> 15+ hands-on projects</li>
+                            <li><i class="fas fa-check"></i> AI-assisted feedback</li>
+                            <li><i class="fas fa-check"></i> Certificate upon completion</li>
+                        </ul>
+                        
+                        <div class="course-footer">
+                            <div class="course-price price-free">Free</div>
+                            <button class="btn btn-primary start-course" data-course="resolve-beginner">Start Learning</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-image">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-level level-beginner">Beginner</span>
+                        <h3>Blender 3D Basics</h3>
+                        <p>Master 3D modeling, texturing, and rendering with Blender's powerful tools.</p>
+                        
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> 10 weeks of structured learning</li>
+                            <li><i class="fas fa-check"></i> 20+ 3D modeling projects</li>
+                            <li><i class="fas fa-check"></i> AI topology assistance</li>
+                            <li><i class="fas fa-check"></i> Certificate upon completion</li>
+                        </ul>
+                        
+                        <div class="course-footer">
+                            <div class="course-price price-free">Free</div>
+                            <button class="btn btn-primary start-course" data-course="blender-beginner">Start Learning</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-image">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-level level-intermediate">Intermediate</span>
+                        <h3>Advanced Color Grading</h3>
+                        <p>Take your color grading skills to the next level with advanced techniques and workflows.</p>
+                        
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> 6 weeks intensive course</li>
+                            <li><i class="fas fa-check"></i> Professional LUT creation</li>
+                            <li><i class="fas fa-check"></i> HDR grading techniques</li>
+                            <li><i class="fas fa-check"></i> Industry certificate</li>
+                        </ul>
+                        
+                        <div class="course-footer">
+                            <div class="course-price price-free">Free</div>
+                            <button class="btn btn-primary start-course" data-course="color-advanced">Start Learning</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube Lessons Section -->
+    <section class="youtube-lessons" id="youtube-lessons">
+        <div class="container">
+            <div class="section-header">
+                <h2>YouTube Video Lessons</h2>
+                <p>Learn from expert tutorials directly integrated from YouTube</p>
+            </div>
+            
+            <div class="youtube-grid">
+                <div class="youtube-card">
+                    <div class="youtube-thumbnail">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="youtube-content">
+                        <h3>DaVinci Resolve Beginner Tutorial</h3>
+                        <div class="youtube-meta">
+                            <span>45 min</span>
+                            <span>125K views</span>
+                        </div>
+                        <p>Complete beginner guide to DaVinci Resolve interface and basic editing</p>
+                        <button class="btn btn-primary watch-video" data-video="dQw4w9WgXcQ">Watch Now</button>
+                    </div>
+                </div>
+                
+                <div class="youtube-card">
+                    <div class="youtube-thumbnail">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="youtube-content">
+                        <h3>Color Grading Like a Pro</h3>
+                        <div class="youtube-meta">
+                            <span>32 min</span>
+                            <span>89K views</span>
+                        </div>
+                        <p>Advanced color grading techniques for cinematic looks</p>
+                        <button class="btn btn-primary watch-video" data-video="dQw4w9WgXcQ">Watch Now</button>
+                    </div>
+                </div>
+                
+                <div class="youtube-card">
+                    <div class="youtube-thumbnail">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="youtube-content">
+                        <h3>Blender 3D Modeling Basics</h3>
+                        <div class="youtube-meta">
+                            <span>58 min</span>
+                            <span>203K views</span>
+                        </div>
+                        <p>Learn 3D modeling fundamentals with Blender</p>
+                        <button class="btn btn-primary watch-video" data-video="dQw4w9WgXcQ">Watch Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Platform Section -->
+    <section class="learning-platform" id="learning-platform">
+        <div class="container">
+            <div class="section-header">
+                <h2>Course Learning Platform</h2>
+                <p>Access courses from Alison, Coursera, and YouTube with integrated learning</p>
+            </div>
+            
+            <div class="platform-container">
+                <div class="sidebar">
+                    <h3>My Courses</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active" data-course="resolve-beginner"><i class="fas fa-film"></i> DaVinci Resolve Fundamentals</a></li>
+                        <li><a href="#" data-course="blender-beginner"><i class="fas fa-cube"></i> Blender 3D Basics</a></li>
+                        <li><a href="#" data-course="color-advanced"><i class="fas fa-palette"></i> Advanced Color Grading</a></li>
+                        <li><a href="#" data-course="fusion-vfx"><i class="fas fa-magic"></i> Fusion VFX & Compositing</a></li>
+                    </ul>
+                    
+                    <div class="progress-bar">
+                        <div class="progress" id="course-progress" style="width: 25%"></div>
+                    </div>
+                    <p>Course Progress: <span id="progress-text">25%</span></p>
+                </div>
+                
+                <div class="main-content">
+                    <div class="course-player">
+                        <h3 id="current-course-title">DaVinci Resolve Fundamentals</h3>
+                        
+                        <div class="video-player">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                        </div>
+                        
+                        <h4 id="current-lesson-title">Introduction to DaVinci Resolve Interface</h4>
+                        <p id="current-lesson-description">Learn the basics of the DaVinci Resolve interface, workspace organization, and essential tools for video editing.</p>
+                        
+                        <div class="external-platforms">
+                            <a href="https://alison.com/courses/design" class="platform-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                View on Alison
+                            </a>
+                            <a href="https://www.coursera.org/courses?query=video%20editing" class="platform-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                View on Coursera
+                            </a>
+                            <a href="https://www.youtube.com/results?search_query=da+vinci+resolve+tutorial" class="platform-link" target="_blank">
+                                <i class="fab fa-youtube"></i>
+                                More on YouTube
+                            </a>
+                        </div>
+                        
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary" id="prev-lesson">Previous Lesson</button>
+                            <button class="btn btn-primary" id="next-lesson">Next Lesson</button>
+                            <button class="btn btn-outline" id="complete-lesson">Mark Complete</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Course Modules -->
+                    <div class="course-modules">
+                        <h4>Course Modules</h4>
+                        
+                        <div class="module">
+                            <div class="module-header">
+                                <h5>Module 1: Getting Started with DaVinci Resolve</h5>
+                                <span>3/5 lessons completed</span>
+                            </div>
+                            <div class="module-content active">
+                                <div class="module-lesson completed" data-video="dQw4w9WgXcQ">
+                                    <span>1. Introduction to DaVinci Resolve Interface</span>
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="module-lesson completed" data-video="dQw4w9WgXcQ">
+                                    <span>2. Understanding the Workspace Layout</span>
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="module-lesson completed" data-video="dQw4w9WgXcQ">
+                                    <span>3. Importing and Organizing Media</span>
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>4. Basic Editing Techniques</span>
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>5. Your First Editing Project</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="module">
+                            <div class="module-header">
+                                <h5>Module 2: Color Correction Fundamentals</h5>
+                                <span>0/4 lessons completed</span>
+                            </div>
+                            <div class="module-content">
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>1. Color Theory Basics</span>
+                                </div>
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>2. Primary Color Correction</span>
+                                </div>
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>3. Using Curves and Wheels</span>
+                                </div>
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>4. Color Matching Between Shots</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="module">
+                            <div class="module-header">
+                                <h5>Module 3: Advanced Editing Techniques</h5>
+                                <span>0/6 lessons completed</span>
+                            </div>
+                            <div class="module-content">
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>1. Working with Nodes</span>
+                                </div>
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>2. Creating Custom LUTs</span>
+                                </div>
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>3. Advanced Masking</span>
+                                </div>
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>4. Tracking and Stabilization</span>
+                                </div>
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>5. Fusion Compositing Basics</span>
+                                </div>
+                                <div class="module-lesson" data-video="dQw4w9WgXcQ">
+                                    <span>6. Final Project & Certificate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Editor Section -->
+    <section class="video-editor" id="video-editor">
+        <div class="container">
+            <div class="section-header">
+                <h2>Integrated Video Editor</h2>
+                <p>Edit your videos directly in our browser-based DaVinci Resolve inspired editor</p>
+            </div>
+            
+            <div class="editor-container">
+                <div class="editor-header">
+                    <div class="editor-tabs">
+                        <div class="editor-tab active">Media</div>
+                        <div class="editor-tab">Cut</div>
+                        <div class="editor-tab">Edit</div>
+                        <div class="editor-tab">Fusion</div>
+                        <div class="editor-tab">Color</div>
+                        <div class="editor-tab">Fairlight</div>
+                        <div class="editor-tab">Deliver</div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" id="export-video">Export</button>
+                    </div>
+                </div>
+                
+                <div class="editor-workspace">
+                    <div class="editor-sidebar">
+                        <h4>Media Pool</h4>
+                        <div class="file-upload" id="video-upload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Click to upload videos from your device</p>
+                            <input type="file" id="file-input" accept="video/*,image/*" style="display: none;" multiple>
+                        </div>
+                        
+                        <div class="uploaded-files" id="uploaded-files">
+                            <!-- Uploaded files will appear here -->
+                        </div>
+                        
+                        <h4>Effects</h4>
+                        <div class="tool-option">
+                            <i class="fas fa-star"></i> Transitions
+                        </div>
+                        <div class="tool-option">
+                            <i class="fas fa-palette"></i> Color Effects
+                        </div>
+                        <div class="tool-option">
+                            <i class="fas fa-font"></i> Titles
+                        </div>
+                    </div>
+                    
+                    <div class="editor-preview">
+                        <div class="preview-placeholder">
+                            <i class="fas fa-play-circle"></i>
+                            <p>Video Preview</p>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-tools">
+                        <div class="tool-group">
+                            <h4>Color Grading</h4>
+                            <div class="tool-options">
+                                <div class="tool-option active">Basic</div>
+                                <div class="tool-option">Curves</div>
+                                <div class="tool-option">Wheels</div>
+                                <div class="tool-option">LUTs</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Exposure</label>
+                                <input type="range" min="0" max="100" value="50">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Contrast</label>
+                                <input type="range" min="0" max="100" value="50">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Saturation</label>
+                                <input type="range" min="0" max="100" value="50">
+                            </div>
+                        </div>
+                        
+                        <div class="tool-group">
+                            <h4>AI Assistant</h4>
+                            <button class="btn btn-primary" style="width: 100%;">Auto Color Grade</button>
+                            <button class="btn btn-outline" style="width: 100%; margin-top: 0.5rem;">Fix Audio Levels</button>
+                            <button class="btn btn-outline" style="width: 100%; margin-top: 0.5rem;">Suggest Transitions</button>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-timeline">
+                        <h4>Timeline</h4>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 30%"></div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                            <button class="btn btn-outline"><i class="fas fa-play"></i></button>
+                            <button class="btn btn-outline"><i class="fas fa-pause"></i></button>
+                            <button class="btn btn-outline"><i class="fas fa-stop"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free LUTs Section -->
+    <section class="free-luts" id="free-luts">
+        <div class="container">
+            <div class="section-header">
+                <h2>Free LUTs & Templates</h2>
+                <p>Download professional color grading LUTs and editing templates for free</p>
+            </div>
+            
+            <div class="lut-grid">
+                <div class="lut-card">
+                    <div class="lut-preview" style="background: linear-gradient(to right, #ff7e5f, #feb47b);">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="lut-content">
+                        <h4>Cinematic Warm</h4>
+                        <p>Warm orange and teal LUT</p>
+                        <button class="btn btn-primary">Download</button>
+                    </div>
+                </div>
+                
+                <div class="lut-card">
+                    <div class="lut-preview" style="background: linear-gradient(to right, #667eea, #764ba2);">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="lut-content">
+                        <h4>Moody Blue</h4>
+                        <p>Cool blue tone LUT</p>
+                        <button class="btn btn-primary">Download</button>
+                    </div>
+                </div>
+                
+                <div class="lut-card">
+                    <div class="lut-preview" style="background: linear-gradient(to right, #f093fb, #f5576c);">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="lut-content">
+                        <h4>Vintage Film</h4>
+                        <p>Retro film look LUT</p>
+                        <button class="btn btn-primary">Download</button>
+                    </div>
+                </div>
+                
+                <div class="lut-card">
+                    <div class="lut-preview" style="background: linear-gradient(to right, #4facfe, #00f2fe);">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="lut-content">
+                        <h4>Ocean Breeze</h4>
+                        <p>Cool aquatic LUT</p>
+                        <button class="btn btn-primary">Download</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Before/After Comparison -->
+            <div style="margin-top: 4rem;">
+                <h3 style="text-align: center; margin-bottom: 2rem;">Before & After LUT Effects</h3>
+                <div class="comparison-container">
+                    <div class="comparison-before"></div>
+                    <div class="comparison-after"></div>
+                    <div class="comparison-handle"></div>
+                </div>
+                <p style="text-align: center; margin-top: 1rem; color: #94A3B8;">Drag the handle to compare before and after effects</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marketplace Section -->
+    <section class="marketplace" id="marketplace">
+        <div class="container">
+            <div class="section-header">
+                <h2>Marketplace</h2>
+                <p>Download free templates, LUTs, 3D models and more from our community</p>
+            </div>
+            
+            <div class="platform-tabs" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+                <button class="tab-btn active" data-platform="all">All Platforms</button>
+                <button class="tab-btn" data-platform="instagram">Instagram</button>
+                <button class="tab-btn" data-platform="tiktok">TikTok</button>
+                <button class="tab-btn" data-platform="youtube">YouTube</button>
+                <button class="tab-btn" data-platform="capcut">CapCut</button>
+            </div>
+            
+            <div class="asset-grid">
+                <div class="asset-card" data-platform="instagram,youtube">
+                    <div class="asset-image">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="asset-content">
+                        <h3>Cinematic LUT Pack</h3>
+                        <div class="asset-meta">
+                            <span>By: ColorPro</span>
+                            <span>256 downloads</span>
+                        </div>
+                        <p>10 professional color grading LUTs for cinematic looks</p>
+                        <button class="btn btn-primary">Download Free</button>
+                    </div>
+                </div>
+                
+                <div class="asset-card" data-platform="tiktok,capcut">
+                    <div class="asset-image">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="asset-content">
+                        <h3>Social Media Transitions</h3>
+                        <div class="asset-meta">
+                            <span>By: EditMaster</span>
+                            <span>421 downloads</span>
+                        </div>
+                        <p>15 smooth transitions for short-form content</p>
+                        <button class="btn btn-primary">Download Free</button>
+                    </div>
+                </div>
+                
+                <div class="asset-card" data-platform="youtube,instagram">
+                    <div class="asset-image">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="asset-content">
+                        <h3>YouTube Intro Template</h3>
+                        <div class="asset-meta">
+                            <span>By: ChannelPro</span>
+                            <span>189 downloads</span>
+                        </div>
+                        <p>Professional intro template for YouTube channels</p>
+                        <button class="btn btn-primary">Download Free</button>
+                    </div>
+                </div>
+                
+                <div class="asset-card" data-platform="tiktok,capcut">
+                    <div class="asset-image">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="asset-content">
+                        <h3>TikTok Sound Pack</h3>
+                        <div class="asset-meta">
+                            <span>By: SoundDesign</span>
+                            <span>312 downloads</span>
+                        </div>
+                        <p>10 trending sounds for TikTok videos</p>
+                        <button class="btn btn-primary">Download Free</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community" id="community">
+        <div class="container">
+            <div class="section-header">
+                <h2>Creative Community</h2>
+                <p>Connect with fellow creators, share work, and get feedback</p>
+            </div>
+            
+            <div class="community-grid">
+                <div class="community-card">
+                    <i class="fas fa-comments community-icon"></i>
+                    <h3>Discussion Forums</h3>
+                    <p>Join conversations about editing techniques, 3D modeling, and more</p>
+                    <button class="btn btn-primary">Join Discussion</button>
+                </div>
+                
+                <div class="community-card">
+                    <i class="fas fa-users community-icon"></i>
+                    <h3>Project Reviews</h3>
+                    <p>Get feedback on your work from industry professionals</p>
+                    <button class="btn btn-primary">Submit Project</button>
+                </div>
+                
+                <div class="community-card">
+                    <i class="fas fa-calendar community-icon"></i>
+                    <h3>Live Events</h3>
+                    <p>Participate in workshops, Q&A sessions, and challenges</p>
+                    <button class="btn btn-primary">View Schedule</button>
+                </div>
+            </div>
+            
+            <!-- Community Chat -->
+            <div class="community-chat">
+                <div class="chat-header">
+                    <h3>Community Chat</h3>
+                    <span>Online: 247 users</span>
+                </div>
+                
+                <div class="chat-messages" id="chat-messages">
+                    <div class="chat-message other">
+                        <strong>Alex_Editor:</strong> Has anyone tried the new cinematic LUT pack?
+                    </div>
+                    <div class="chat-message other">
+                        <strong>Maya_3D:</strong> Yes! It's amazing for color grading
+                    </div>
+                    <div class="chat-message other">
+                        <strong>VideoPro:</strong> Can someone help me with Fusion nodes?
+                    </div>
+                    <div class="chat-message user">
+                        <strong>You:</strong> I'm working on a new project with DaVinci Resolve
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="chat-input" placeholder="Type your message...">
+                    <button class="btn btn-primary" id="send-message">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Start Your Creative Journey Today</h2>
+                <p>Join thousands of students mastering professional creative skills with the power of AI assistance - completely FREE!</p>
+                
+                <div class="cta-buttons">
+                    <button class="btn btn-light" id="cta-signup">Sign Up Free</button>
+                    <button class="btn btn-outline">Schedule a Demo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CraftAI Studio</h3>
+                    <p>The first AI-powered platform for mastering DaVinci Resolve and Blender with real-time assistance and verified certificates.</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#ai-assistants">AI Assistants</a></li>
+                        <li><a href="#video-editor">Video Editor</a></li>
+                        <li><a href="#marketplace">Marketplace</a></li>
+                        <li><a href="#community">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 CraftAI Studio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Log In to CraftAI Studio</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Log In</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;">Don't have an account? <a href="#" id="switch-to-signup">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signup-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sign Up for CraftAI Studio</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;">Already have an account? <a href="#" id="switch-to-login">Log in</a></p>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="certificate-modal" id="certificate-modal">
+        <div class="certificate">
+            <div class="certificate-header">
+                <h2>CERTIFICATE OF COMPLETION</h2>
+                <p>This is to certify that</p>
+            </div>
+            
+            <div class="certificate-body">
+                <h3 id="certificate-name">[Student Name]</h3>
+                <p>has successfully completed the course</p>
+                <h4 id="certificate-course">[Course Name]</h4>
+                <p>with outstanding performance and dedication</p>
+                
+                <div class="certificate-verify">
+                    <p>Verification Code: <strong id="certificate-code">CRAFT-AI-2023-XXXXX</strong></p>
+                    <p>Verify at: https://craftaistudio.com/verify</p>
+                </div>
+                
+                <div class="certificate-logos">
+                    <div class="certificate-logo">
+                        <i class="fas fa-robot" style="font-size: 3rem; color: var(--primary);"></i>
+                        <p>CraftAI Studio</p>
+                    </div>
+                    <div class="certificate-logo">
+                        <i class="fab fa-google" style="font-size: 3rem; color: #4285F4;"></i>
+                        <p>Google Verified</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <button class="btn btn-primary" id="download-certificate">Download Certificate</button>
+                <button class="btn btn-outline" id="close-certificate">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // User Authentication System
+        let currentUser = null;
+        let userProgress = {
+            'resolve-beginner': { completed: 3, total: 15 },
+            'blender-beginner': { completed: 0, total: 12 },
+            'color-advanced': { completed: 0, total: 10 }
+        };
+
+        // DOM Elements
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+        const heroSignup = document.getElementById('hero-signup');
+        const ctaSignup = document.getElementById('cta-signup');
+        const logoutBtn = document.getElementById('logout-btn');
+        const loginModal = document.getElementById('login-modal');
+        const signupModal = document.getElementById('signup-modal');
+        const certificateModal = document.getElementById('certificate-modal');
+        const closeModals = document.querySelectorAll('.close-modal');
+        const switchToSignup = document.getElementById('switch-to-signup');
+        const switchToLogin = document.getElementById('switch-to-login');
+        const authButtons = document.getElementById('auth-buttons');
+        const userProfile = document.getElementById('user-profile');
+        const username = document.getElementById('username');
+        const userAvatar = document.getElementById('user-avatar');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const downloadCertificate = document.getElementById('download-certificate');
+        const closeCertificate = document.getElementById('close-certificate');
+        const certificateName = document.getElementById('certificate-name');
+        const certificateCourse = document.getElementById('certificate-course');
+        const certificateCode = document.getElementById('certificate-code');
+
+        // Course Elements
+        const startCourseBtns = document.querySelectorAll('.start-course');
+        const watchVideoBtns = document.querySelectorAll('.watch-video');
+        const exportVideoBtn = document.getElementById('export-video');
+        const platformTabs = document.querySelectorAll('.platform-tabs .tab-btn');
+        const videoUpload = document.getElementById('video-upload');
+        const fileInput = document.getElementById('file-input');
+        const uploadedFiles = document.getElementById('uploaded-files');
+        const chatInput = document.getElementById('chat-input');
+        const sendMessage = document.getElementById('send-message');
+        const chatMessages = document.getElementById('chat-messages');
+        const moduleHeaders = document.querySelectorAll('.module-header');
+        const moduleLessons = document.querySelectorAll('.module-lesson');
+        const prevLessonBtn = document.getElementById('prev-lesson');
+        const nextLessonBtn = document.getElementById('next-lesson');
+        const completeLessonBtn = document.getElementById('complete-lesson');
+        const currentCourseTitle = document.getElementById('current-course-title');
+        const currentLessonTitle = document.getElementById('current-lesson-title');
+        const currentLessonDescription = document.getElementById('current-lesson-description');
+        const courseProgress = document.getElementById('course-progress');
+        const progressText = document.getElementById('progress-text');
+
+        // Current lesson tracking
+        let currentLessonIndex = 0;
+        const lessons = [
+            {
+                title: "Introduction to DaVinci Resolve Interface",
+                description: "Learn the basics of the DaVinci Resolve interface, workspace organization, and essential tools for video editing.",
+                video: "dQw4w9WgXcQ"
+            },
+            {
+                title: "Understanding the Workspace Layout",
+                description: "Explore the different workspaces in DaVinci Resolve and learn how to customize your editing environment.",
+                video: "dQw4w9WgXcQ"
+            },
+            {
+                title: "Importing and Organizing Media",
+                description: "Learn how to import media files, organize them in the media pool, and prepare for editing.",
+                video: "dQw4w9WgXcQ"
+            },
+            {
+                title: "Basic Editing Techniques",
+                description: "Master the essential editing tools including trimming, cutting, and arranging clips on the timeline.",
+                video: "dQw4w9WgXcQ"
+            }
+        ];
+
+        // Event Listeners
+        loginBtn.addEventListener('click', () => showModal(loginModal));
+        signupBtn.addEventListener('click', () => showModal(signupModal));
+        heroSignup.addEventListener('click', () => showModal(signupModal));
+        ctaSignup.addEventListener('click', () => showModal(signupModal));
+        logoutBtn.addEventListener('click', logout);
+        downloadCertificate.addEventListener('click', downloadCert);
+        closeCertificate.addEventListener('click', () => certificateModal.style.display = 'none');
+
+        closeModals.forEach(btn => {
+            btn.addEventListener('click', () => {
+                loginModal.style.display = 'none';
+                signupModal.style.display = 'none';
+            });
+        });
+
+        switchToSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            signupModal.style.display = 'flex';
+        });
+
+        switchToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupModal.style.display = 'none';
+            loginModal.style.display = 'flex';
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            login(email, password);
+        });
+
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            signup(name, email, password);
+        });
+
+        startCourseBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (!currentUser) {
+                    showModal(signupModal);
+                    return;
+                }
+                const courseId = e.target.getAttribute('data-course');
+                startCourse(courseId);
+            });
+        });
+
+        watchVideoBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const videoId = e.target.getAttribute('data-video');
+                // In a real implementation, this would open a YouTube player
+                window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+            });
+        });
+
+        exportVideoBtn.addEventListener('click', () => {
+            if (!currentUser) {
+                showModal(signupModal);
+                return;
+            }
+            alert('Video exported successfully! You can now download your edited video.');
+        });
+
+        platformTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                platformTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const platform = tab.getAttribute('data-platform');
+                filterAssets(platform);
+            });
+        });
+
+        // File Upload Functionality
+        videoUpload.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', handleFileUpload);
+
+        // Community Chat
+        sendMessage.addEventListener('click', sendChatMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+
+        // Module Toggle
+        moduleHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                content.classList.toggle('active');
+            });
+        });
+
+        // Lesson Navigation
+        prevLessonBtn.addEventListener('click', () => {
+            if (currentLessonIndex > 0) {
+                currentLessonIndex--;
+                updateLesson();
+            }
+        });
+
+        nextLessonBtn.addEventListener('click', () => {
+            if (currentLessonIndex < lessons.length - 1) {
+                currentLessonIndex++;
+                updateLesson();
+            } else {
+                // Course completed - show certificate
+                showCertificate('resolve-beginner');
+            }
+        });
+
+        completeLessonBtn.addEventListener('click', () => {
+            // Mark lesson as completed
+            const progress = userProgress['resolve-beginner'];
+            if (progress.completed < progress.total) {
+                progress.completed++;
+                updateProgress();
+            }
+            
+            // Move to next lesson if available
+            if (currentLessonIndex < lessons.length - 1) {
+                currentLessonIndex++;
+                updateLesson();
+            } else {
+                // Course completed
+                showCertificate('resolve-beginner');
+            }
+        });
+
+        // Lesson click handlers
+        moduleLessons.forEach((lesson, index) => {
+            lesson.addEventListener('click', () => {
+                currentLessonIndex = index;
+                updateLesson();
+            });
+        });
+
+        // Before/After Comparison
+        initComparisonSlider();
+
+        // Functions
+        function showModal(modal) {
+            modal.style.display = 'flex';
+        }
+
+        function login(email, password) {
+            // In a real app, this would make an API call to authenticate
+            currentUser = {
+                name: 'Demo User',
+                email: email,
+                initial: 'D'
+            };
+            
+            updateUI();
+            loginModal.style.display = 'none';
+            
+            // Reset form
+            loginForm.reset();
+        }
+
+        function signup(name, email, password) {
+            // In a real app, this would make an API call to create an account
+            currentUser = {
+                name: name,
+                email: email,
+                initial: name.charAt(0).toUpperCase()
+            };
+            
+            updateUI();
+            signupModal.style.display = 'none';
+            
+            // Reset form
+            signupForm.reset();
+        }
+
+        function logout() {
+            currentUser = null;
+            updateUI();
+        }
+
+        function updateUI() {
+            if (currentUser) {
+                authButtons.style.display = 'none';
+                userProfile.style.display = 'flex';
+                username.textContent = currentUser.name;
+                userAvatar.textContent = currentUser.initial;
+            } else {
+                authButtons.style.display = 'flex';
+                userProfile.style.display = 'none';
+            }
+        }
+
+        function startCourse(courseId) {
+            // Reset to first lesson
+            currentLessonIndex = 0;
+            updateLesson();
+            
+            // Scroll to learning platform
+            document.getElementById('learning-platform').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateLesson() {
+            const lesson = lessons[currentLessonIndex];
+            currentLessonTitle.textContent = lesson.title;
+            currentLessonDescription.textContent = lesson.description;
+            
+            // Update video player
+            const videoPlayer = document.querySelector('.video-player iframe');
+            videoPlayer.src = `https://www.youtube.com/embed/${lesson.video}`;
+            
+            // Update navigation buttons
+            prevLessonBtn.disabled = currentLessonIndex === 0;
+            nextLessonBtn.disabled = currentLessonIndex === lessons.length - 1;
+            
+            // Update progress
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = userProgress['resolve-beginner'];
+            const percentage = (progress.completed / progress.total) * 100;
+            courseProgress.style.width = `${percentage}%`;
+            progressText.textContent = `${Math.round(percentage)}%`;
+        }
+
+        function showCertificate(courseId) {
+            const courseNames = {
+                'resolve-beginner': 'DaVinci Resolve Fundamentals',
+                'blender-beginner': 'Blender 3D Basics',
+                'color-advanced': 'Advanced Color Grading'
+            };
+            
+            certificateName.textContent = currentUser.name;
+            certificateCourse.textContent = courseNames[courseId];
+            certificateCode.textContent = `CRAFT-AI-${new Date().getFullYear()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+            
+            certificateModal.style.display = 'flex';
+        }
+
+        function downloadCert() {
+            alert('Certificate downloaded successfully!');
+            certificateModal.style.display = 'none';
+        }
+
+        function filterAssets(platform) {
+            const assets = document.querySelectorAll('.asset-card');
+            assets.forEach(asset => {
+                if (platform === 'all' || asset.getAttribute('data-platform').includes(platform)) {
+                    asset.style.display = 'block';
+                } else {
+                    asset.style.display = 'none';
+                }
+            });
+        }
+
+        function handleFileUpload(e) {
+            const files = e.target.files;
+            if (!files || files.length === 0) return;
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const fileElement = document.createElement('div');
+                fileElement.className = 'uploaded-file';
+                
+                const fileType = file.type.split('/')[0];
+                const icon = fileType === 'video' ? 'fa-video' : 'fa-image';
+                
+                fileElement.innerHTML = `
+                    <i class="fas ${icon}"></i>
+                    <p>${file.name}</p>
+                    <button class="remove-file">&times;</button>
+                `;
+                
+                uploadedFiles.appendChild(fileElement);
+                
+                // Add remove functionality
+                fileElement.querySelector('.remove-file').addEventListener('click', () => {
+                    fileElement.remove();
+                });
+            }
+            
+            // Reset file input
+            fileInput.value = '';
+        }
+
+        function sendChatMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            const messageElement = document.createElement('div');
+            messageElement.className = 'chat-message user';
+            messageElement.innerHTML = `<strong>You:</strong> ${message}`;
+            
+            chatMessages.appendChild(messageElement);
+            chatInput.value = '';
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Simulate response after a delay
+            setTimeout(() => {
+                const responses = [
+                    "That's a great question!",
+                    "I've been working on something similar.",
+                    "Has anyone tried the new features?",
+                    "The AI assistant helped me with that too!",
+                    "Let me know if you need any help with that."
+                ];
+                
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                const responseElement = document.createElement('div');
+                responseElement.className = 'chat-message other';
+                responseElement.innerHTML = `<strong>Community_User:</strong> ${randomResponse}`;
+                
+                chatMessages.appendChild(responseElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+
+        function initComparisonSlider() {
+            const container = document.querySelector('.comparison-container');
+            const after = document.querySelector('.comparison-after');
+            const handle = document.querySelector('.comparison-handle');
+            
+            let isResizing = false;
+            
+            handle.addEventListener('mousedown', function(e) {
+                isResizing = true;
+                document.addEventListener('mousemove', handleMouseMove);
+                document.addEventListener('mouseup', () => {
+                    isResizing = false;
+                    document.removeEventListener('mousemove', handleMouseMove);
+                });
+            });
+            
+            function handleMouseMove(e) {
+                if (!isResizing) return;
+                
+                const containerRect = container.getBoundingClientRect();
+                const x = e.clientX - containerRect.left;
+                const width = containerRect.width;
+                
+                let percentage = (x / width) * 100;
+                percentage = Math.max(0, Math.min(100, percentage));
+                
+                after.style.width = `${percentage}%`;
+                handle.style.left = `${percentage}%`;
+            }
+            
+            // Touch support for mobile
+            handle.addEventListener('touchstart', function(e) {
+                isResizing = true;
+                document.addEventListener('touchmove', handleTouchMove);
+                document.addEventListener('touchend', () => {
+                    isResizing = false;
+                    document.removeEventListener('touchmove', handleTouchMove);
+                });
+            });
+            
+            function handleTouchMove(e) {
+                if (!isResizing) return;
+                
+                const containerRect = container.getBoundingClientRect();
+                const x = e.touches[0].clientX - containerRect.left;
+                const width = containerRect.width;
+                
+                let percentage = (x / width) * 100;
+                percentage = Math.max(0, Math.min(100, percentage));
+                
+                after.style.width = `${percentage}%`;
+                handle.style.left = `${percentage}%`;
+            }
+        }
+
+        // Tab functionality for AI Assistants
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and content
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // Simple animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .course-card, .youtube-card, .asset-card, .community-card, .lut-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (e.target === signupModal) {
+                signupModal.style.display = 'none';
+            }
+            if (e.target === certificateModal) {
+                certificateModal.style.display = 'none';
+            }
+        });
+
+        // Initialize UI
+        updateUI();
+        updateLesson();
+    </script>
+</body>
+</html>
